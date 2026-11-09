@@ -60,6 +60,43 @@ function XpCalculator({ onBack }) {
   </View>;
 }
 
+function BarnInventory({ onBack }) {
+  const [items, setItems] = useState([
+    { id: 'wheat', name: 'Trigo', icon: '🌾', count: 20 },
+    { id: 'corn', name: 'Milho', icon: '🌽', count: 12 },
+    { id: 'milk', name: 'Leite', icon: '🥛', count: 8 },
+    { id: 'eggs', name: 'Ovos', icon: '🥚', count: 15 },
+  ]);
+  const total = items.reduce((sum, item) => sum + item.count, 0);
+  const change = (id, amount) => setItems(current => current.map(item =>
+    item.id === id ? { ...item, count: Math.max(0, item.count + amount) } : item
+  ));
+  return <View>
+    <TouchableOpacity onPress={onBack} style={styles.back}><Text style={styles.backText}>‹  Voltar à quinta</Text></TouchableOpacity>
+    <View style={styles.toolHeroGreen}>
+      <Text style={styles.toolHeroIcon}>📦</Text>
+      <Text style={styles.toolHeroTitle}>O meu celeiro</Text>
+      <Text style={styles.toolHeroSub}>Regista as quantidades dos teus produtos. Estes dados ficam, por agora, apenas nesta sessão.</Text>
+    </View>
+    <View style={styles.panel}>
+      <Text style={styles.sectionHeading}>Produtos guardados</Text>
+      {items.map(item => <View key={item.id} style={styles.inventoryRow}>
+        <View style={styles.inventoryName}><Text style={styles.inventoryIcon}>{item.icon}</Text><Text style={styles.inventoryLabel}>{item.name}</Text></View>
+        <View style={styles.counterRow}>
+          <TouchableOpacity accessibilityLabel={'Retirar '+item.name} style={styles.counter} onPress={() => change(item.id,-1)}><Text style={styles.counterText}>−</Text></TouchableOpacity>
+          <Text style={styles.inventoryCount}>{item.count}</Text>
+          <TouchableOpacity accessibilityLabel={'Adicionar '+item.name} style={styles.counter} onPress={() => change(item.id,1)}><Text style={styles.counterText}>+</Text></TouchableOpacity>
+        </View>
+      </View>)}
+      <View style={styles.resultBox}>
+        <Text style={styles.resultLabel}>TOTAL DE UNIDADES REGISTADAS</Text>
+        <Text style={styles.resultNumber}>{total}</Text>
+      </View>
+      <Text style={styles.disclaimer}>Lista de demonstração. Ainda não está ligada à conta nem ao inventário real do Hay Day.</Text>
+    </View>
+  </View>;
+}
+
 function ProfitCalculator({ onBack }) {
   const [cost, setCost] = useState('20');
   const [sale, setSale] = useState('35');
@@ -96,7 +133,7 @@ export default function App() {
     <StatusBar barStyle="dark-content" backgroundColor="#b9e98c" />
     <ScrollView contentContainerStyle={styles.page}>
       {screen === 'Calculadora XP' ? <XpCalculator onBack={goHome} /> :
-       screen === 'Custos e lucros' ? <ProfitCalculator onBack={goHome} /> :
+       screen === 'Custos e lucros' ? <ProfitCalculator onBack={goHome} /> :\n       screen === 'O meu celeiro' ? <BarnInventory onBack={goHome} /> :
        <View>
         <View style={styles.hero}>
           <Text style={styles.eyebrow}>A TUA QUINTA, MAIS ORGANIZADA</Text>
@@ -108,7 +145,7 @@ export default function App() {
           </View>
           <Text style={styles.demoNote}>Configura os teus valores nas calculadoras.</Text>
         </View>
-        <View style={styles.barnCard}>
+        <TouchableOpacity activeOpacity={0.85} onPress={() => setScreen('O meu celeiro')} style={styles.barnCard}>
           <View><Text style={styles.sectionTitle}>📦 O meu celeiro</Text><Text style={styles.barnSub}>Espaço utilizado (contador de exemplo)</Text></View>
           <View style={styles.barnRight}>
             <Text style={styles.barnCount}>{barnSpace} / 200</Text>
@@ -161,5 +198,5 @@ const styles = StyleSheet.create({
  fieldLabel:{fontSize:13,fontWeight:'800',color:'#6e5939',marginBottom:6},input:{backgroundColor:'#fbf8ef',borderWidth:1,borderColor:'#e6d9bd',borderRadius:12,paddingHorizontal:13,paddingVertical:11,fontSize:16,color:'#4d432f'},
  resultBox:{backgroundColor:'#fff2c9',borderRadius:16,padding:16,marginTop:4},resultLabel:{fontSize:10,fontWeight:'900',letterSpacing:1,color:'#856a2b'},
  resultNumber:{fontSize:29,fontWeight:'900',color:'#4e8a3c',marginTop:5},resultDetail:{fontSize:13,color:'#705d38',marginTop:9,lineHeight:19},
- disclaimer:{fontSize:11,color:'#94866d',lineHeight:16,marginTop:12}
+ disclaimer:{fontSize:11,color:'#94866d',lineHeight:16,marginTop:12},\n inventoryRow:{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingVertical:12,borderBottomWidth:1,borderBottomColor:'#f0e8d8'},\n inventoryName:{flexDirection:'row',alignItems:'center',gap:10},inventoryIcon:{fontSize:23},inventoryLabel:{fontSize:15,fontWeight:'800',color:'#685238'},inventoryCount:{minWidth:28,textAlign:'center',fontSize:16,fontWeight:'900',color:'#4d7538'}
 });
