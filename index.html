@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#6e9f45"><meta name="description" content="HayDay Helper — ferramentas gratuitas para planear a tua quinta.">
+<title>HayDay Helper</title>
+<style>
+:root{--green:#6e9f45;--dark:#355d2b;--cream:#fff9e9;--ink:#3e4938;--muted:#71806b;--line:#e6e9dc}
+*{box-sizing:border-box}body{margin:0;background:#eef3e6;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+header{background:linear-gradient(135deg,#78ad4b,#477c39);color:white;padding:22px 18px 28px;border-radius:0 0 26px 26px}
+.wrap{max-width:760px;margin:auto;padding:0 14px}h1{margin:0;font-size:28px}header p{margin:6px 0 0;color:#f0ffe5}.hero{margin-top:18px;background:#ffffff24;border:1px solid #ffffff50;padding:14px;border-radius:18px;font-size:14px}
+nav{display:flex;gap:8px;overflow:auto;padding:14px 0;position:sticky;top:0;background:#eef3e6;z-index:2}
+nav button{border:1px solid #dce5d2;background:white;color:var(--dark);padding:10px 15px;border-radius:999px;font-weight:700;white-space:nowrap}
+nav button.active{background:var(--dark);color:white}
+main{padding-bottom:35px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:18px;margin:10px 0;box-shadow:0 3px 12px #304c1710}
+h2{margin:0 0 12px;font-size:21px;color:var(--dark)}h3{margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{padding:15px;border-radius:16px;background:#f5f8ed}.tile b{display:block;font-size:18px}.tile span{font-size:13px;color:var(--muted)}
+label{display:block;font-weight:650;font-size:14px;margin:10px 0 5px}input{width:100%;padding:12px;border:1px solid #d9e1d0;border-radius:12px;font:inherit;background:#fff}
+.result{background:#f1f7e9;padding:14px;border-radius:15px;margin-top:14px}.big{font-size:28px;font-weight:800;color:var(--dark)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}
+.btn{border:0;border-radius:12px;background:var(--green);color:white;padding:10px 14px;font-weight:750;font-size:16px}.btn.secondary{background:#eaf1e3;color:var(--dark)}.qty{display:flex;align-items:center;gap:10px}.qty strong{min-width:28px;text-align:center}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
+@media(min-width:600px){header{padding-top:30px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+</style></head>
+<body>
+<header><div class="wrap"><h1>🌾 HayDay Helper</h1><p>A tua quinta, mais organizada!</p><div class="hero">🚜 Ferramentas gratuitas para calcular XP, comparar lucros e acompanhar o celeiro. Criado por jogadores, para jogadores.</div></div></header>
+<div class="wrap"><nav aria-label="Ferramentas">
+<button class="active" data-tab="inicio">🏡 Início</button><button data-tab="xp">⭐ XP</button><button data-tab="lucro">🪙 Lucros</button><button data-tab="celeiro">🏚️ Celeiro</button><button data-tab="plantacoes">🌽 Plantações</button>
+</nav><main>
+<section id="inicio" class="panel">
+<div class="card"><h2>Bem-vindo à quinta!</h2><p>Escolhe uma ferramenta no menu para começares a fazer contas e planear a tua produção.</p><div class="grid">
+<div class="tile"><b>⭐ Calculadora XP</b><span>Calcula quanto falta para subir de nível.</span></div><div class="tile"><b>🪙 Custos e lucros</b><span>Descobre quanto ganhas numa venda.</span></div><div class="tile"><b>🏚️ Celeiro</b><span>Regista os teus produtos.</span></div><div class="tile"><b>🌽 Plantações</b><span>Estima colheitas e tempos.</span></div></div></div>
+<div class="card"><h2>🌻 Dica</h2><p>Os resultados dependem dos valores que introduzires. Esta ferramenta não está ligada diretamente ao jogo Hay Day nem à Supercell.</p><button class="btn" id="share">Partilhar com amigos ↗</button></div>
+</section>
+<section id="xp" class="panel" hidden><div class="card"><h2>⭐ Calculadora de XP</h2><label>XP atual</label><input id="xpNow" type="number" min="0" value="12500"><label>XP pretendido</label><input id="xpGoal" type="number" min="0" value="20000"><label>XP por ação</label><input id="xpAction" type="number" min="1" value="35"><div class="result"><div class="big" id="xpPct">62,5%</div><div style="height:10px;background:#dce8d2;border-radius:20px;overflow:hidden"><div id="xpBar" style="height:10px;background:#6e9f45;width:62.5%"></div></div><div class="row"><span>XP em falta</span><b id="xpMissing">7 500</b></div><div class="row"><span>Ações necessárias</span><b id="xpCount">215</b></div></div></div></section>
+<section id="lucro" class="panel" hidden><div class="card"><h2>🪙 Custos e lucros</h2><label>Custo por unidade</label><input id="cost" type="number" value="8"><label>Preço de venda por unidade</label><input id="price" type="number" value="12"><label>Quantidade</label><input id="quantity" type="number" value="50"><div class="result"><div class="big" id="profit">200 moedas</div><div class="row"><span>Custo total</span><b id="totalCost">400</b></div><div class="row"><span>Venda total</span><b id="totalSale">600</b></div><div class="row"><span>Margem sobre custo</span><b id="margin">50%</b></div></div></div></section>
+<section id="celeiro" class="panel" hidden><div class="card"><h2>🏚️ O meu celeiro</h2><p>Regista manualmente as quantidades. Os dados ficam guardados neste dispositivo.</p><div id="stock"></div><button class="btn secondary" id="resetStock">Repor exemplo</button></div></section>
+<section id="plantacoes" class="panel" hidden><div class="card"><h2>🌽 Planeador de plantações</h2><label>Número de parcelas</label><input id="plots" type="number" min="0" value="20"><label>Unidades por parcela</label><input id="yield" type="number" min="0" value="2"><label>Tempo de crescimento (minutos)</label><input id="grow" type="number" min="0" value="2"><div class="result"><div class="big" id="harvest">40 unidades</div><div class="row"><span>Tempo de crescimento</span><b id="growTime">2 minutos</b></div></div></div></section>
+</main><footer>HayDay Helper · Projeto independente e não oficial. Não afiliado à Supercell.</footer></div>
+<script>
+const $=id=>document.getElementById(id),fmt=n=>Number(n||0).toLocaleString('pt-PT',{maximumFractionDigits:2});
+document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==b.dataset.tab)}));
+function xp(){let n=+$('xpNow').value||0,g=+$('xpGoal').value||0,a=+$('xpAction').value||0,m=Math.max(0,g-n),pct=g>0?Math.min(100,n/g*100):0;$('xpPct').textContent=fmt(pct)+'%';$('xpBar').style.width=pct+'%';$('xpMissing').textContent=fmt(m);$('xpCount').textContent=a>0?fmt(Math.ceil(m/a)):'—'}
+['xpNow','xpGoal','xpAction'].forEach(id=>$(id).addEventListener('input',xp));xp();
+function profit(){let c=+$('cost').value||0,p=+$('price').value||0,q=+$('quantity').value||0,ct=c*q,st=p*q,v=st-ct;$('profit').textContent=fmt(v)+' moedas';$('totalCost').textContent=fmt(ct);$('totalSale').textContent=fmt(st);$('margin').textContent=ct>0?fmt(v/ct*100)+'%':'—'}
+['cost','price','quantity'].forEach(id=>$(id).addEventListener('input',profit));profit();
+const defaults={Trigo:120,Milho:65,Ovos:24,Leite:18};let inventory={...defaults};try{inventory={...defaults,...JSON.parse(localStorage.getItem('hayday-helper-stock')||'{}')}}catch(e){}
+function renderStock(){ $('stock').innerHTML='';Object.keys(defaults).forEach(k=>{let row=document.createElement('div');row.className='row';let name=document.createElement('b');name.textContent=({Trigo:'🌾 ',Milho:'🌽 ',Ovos:'🥚 ',Leite:'🥛 '}[k])+k;let controls=document.createElement('div');controls.className='qty';let minus=document.createElement('button');minus.className='btn secondary';minus.textContent='−';minus.setAttribute('aria-label','Diminuir '+k);let value=document.createElement('strong');value.textContent=inventory[k];let plus=document.createElement('button');plus.className='btn';plus.textContent='+';plus.setAttribute('aria-label','Aumentar '+k);minus.onclick=()=>change(k,-1);plus.onclick=()=>change(k,1);controls.append(minus,value,plus);row.append(name,controls);$('stock').append(row)})}
+function change(k,d){inventory[k]=Math.max(0,(+inventory[k]||0)+d);localStorage.setItem('hayday-helper-stock',JSON.stringify(inventory));renderStock()}$('resetStock').onclick=()=>{inventory={...defaults};localStorage.setItem('hayday-helper-stock',JSON.stringify(inventory));renderStock()};renderStock();
+function crops(){let n=Math.max(0,+$('plots').value||0),y=Math.max(0,+$('yield').value||0),t=Math.max(0,+$('grow').value||0);$('harvest').textContent=fmt(n*y)+' unidades';$('growTime').textContent=fmt(t)+' minutos'}['plots','yield','grow'].forEach(id=>$(id).addEventListener('input',crops));crops();
+$('share').onclick=async()=>{let data={title:'HayDay Helper',text:'Experimenta o HayDay Helper — ferramentas gratuitas para a tua quinta!',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(()=>$('share').textContent='Link copiado!')}else{prompt('Copia este link:',location.href)}};
+</script></body></html>
