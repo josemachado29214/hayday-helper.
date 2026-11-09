@@ -33,3 +33,17 @@ Para executar os testes das funções:
 
 ## Independência
 HayDay Helper é um projeto independente de fãs e não é afiliado, aprovado ou patrocinado pela Supercell.
+
+
+## Preparação para publicação e atualizações
+
+- `eas.json` contém perfis de desenvolvimento, pré-visualização e produção para Android/iOS.
+- A política `runtimeVersion: fingerprint` ajuda a impedir que atualizações JavaScript sejam instaladas em aplicações com código nativo incompatível.
+- `expo-updates` foi adicionado como dependência para preparar atualizações remotas OTA.
+- A ligação EAS Update ainda precisa de ser inicializada numa conta Expo: `eas update:configure`. Isto gera o identificador do projeto e o URL de atualização; não se deve inventar esse identificador.
+- As atualizações OTA servem para alterações compatíveis de JavaScript e recursos. Alterações nativas, permissões ou atualizações do SDK exigem nova compilação e, quando aplicável, nova submissão às lojas.
+- O workflow GitHub Actions executa os testes e o Expo Doctor em cada push/pull request.
+
+## Contas e publicação
+
+A publicação exige contas de programador controladas pelo proprietário da aplicação, credenciais e aprovação das lojas. Nunca coloques palavras-passe, chaves privadas ou certificados no repositório.
