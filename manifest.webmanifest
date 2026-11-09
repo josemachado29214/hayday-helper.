@@ -1,0 +1,15 @@
+{
+  "id": "./",
+  "name": "HayDay Helper",
+  "short_name": "HayDay Helper",
+  "description": "Ferramentas gratuitas para organizar a tua quinta no Hay Day.",
+  "lang": "pt-PT",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eef3e6",
+  "theme_color": "#6e9f45",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
