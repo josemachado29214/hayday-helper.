@@ -8,8 +8,8 @@
 <link rel="apple-touch-icon" href="./icon.svg">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="HayDay Helper"><meta name="description" content="HayDay Helper — ferramentas gratuitas para planear a tua quinta.">
-<title>HayDay Helper</title>
+<meta name="apple-mobile-web-app-title" content="Favo de mel"><meta name="description" content="Favo de mel — ferramentas gratuitas para planear a tua quinta.">
+<title>Favo de mel</title>
 <style>
 :root{--green:#6e9f45;--dark:#355d2b;--cream:#fff9e9;--ink:#3e4938;--muted:#71806b;--line:#e6e9dc}
 *{box-sizing:border-box}body{margin:0;background:#eef3e6;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
@@ -29,7 +29,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 @media(min-width:600px){header{padding-top:30px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style></head>
 <body>
-<header><div class="wrap"><h1>🌾 HayDay Helper</h1><p>A tua quinta, mais organizada!</p><div class="hero">🚜 Ferramentas gratuitas para calcular XP, comparar lucros e acompanhar o celeiro. Criado por jogadores, para jogadores.</div></div></header>
+<header><div class="wrap"><h1>🌾 Favo de mel</h1><p>A tua quinta, mais organizada!</p><div class="hero">🚜 Ferramentas gratuitas para calcular XP, comparar lucros e acompanhar o celeiro. Criado por jogadores, para jogadores.</div></div></header>
 <div class="wrap"><nav aria-label="Ferramentas">
 <button class="active" data-tab="inicio">🏡 Início</button><button data-tab="xp">⭐ XP</button><button data-tab="lucro">🪙 Lucros</button><button data-tab="celeiro">🏚️ Celeiro</button><button data-tab="plantacoes">🌽 Plantações</button>
 </nav><main>
@@ -42,7 +42,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 <section id="lucro" class="panel" hidden><div class="card"><h2>🪙 Custos e lucros</h2><label>Custo por unidade</label><input id="cost" type="number" value="8"><label>Preço de venda por unidade</label><input id="price" type="number" value="12"><label>Quantidade</label><input id="quantity" type="number" value="50"><div class="result"><div class="big" id="profit">200 moedas</div><div class="row"><span>Custo total</span><b id="totalCost">400</b></div><div class="row"><span>Venda total</span><b id="totalSale">600</b></div><div class="row"><span>Margem sobre custo</span><b id="margin">50%</b></div></div></div></section>
 <section id="celeiro" class="panel" hidden><div class="card"><h2>🏚️ O meu celeiro</h2><p>Regista manualmente as quantidades. Os dados ficam guardados neste dispositivo.</p><div id="stock"></div><button class="btn secondary" id="resetStock">Repor exemplo</button></div></section>
 <section id="plantacoes" class="panel" hidden><div class="card"><h2>🌽 Planeador de plantações</h2><label>Número de parcelas</label><input id="plots" type="number" min="0" value="20"><label>Unidades por parcela</label><input id="yield" type="number" min="0" value="2"><label>Tempo de crescimento (minutos)</label><input id="grow" type="number" min="0" value="2"><div class="result"><div class="big" id="harvest">40 unidades</div><div class="row"><span>Tempo de crescimento</span><b id="growTime">2 minutos</b></div></div></div></section>
-</main><footer>HayDay Helper · Projeto independente e não oficial. Não afiliado à Supercell.</footer></div>
+</main><footer>Favo de mel · Projeto independente e não oficial. Não afiliado à Supercell.</footer></div>
 <script>
 const $=id=>document.getElementById(id),fmt=n=>Number(n||0).toLocaleString('pt-PT',{maximumFractionDigits:2});
 document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.panel').forEach(p=>p.hidden=p.id!==b.dataset.tab)}));
@@ -54,6 +54,6 @@ const defaults={Trigo:120,Milho:65,Ovos:24,Leite:18};let inventory={...defaults}
 function renderStock(){ $('stock').innerHTML='';Object.keys(defaults).forEach(k=>{let row=document.createElement('div');row.className='row';let name=document.createElement('b');name.textContent=({Trigo:'🌾 ',Milho:'🌽 ',Ovos:'🥚 ',Leite:'🥛 '}[k])+k;let controls=document.createElement('div');controls.className='qty';let minus=document.createElement('button');minus.className='btn secondary';minus.textContent='−';minus.setAttribute('aria-label','Diminuir '+k);let value=document.createElement('strong');value.textContent=inventory[k];let plus=document.createElement('button');plus.className='btn';plus.textContent='+';plus.setAttribute('aria-label','Aumentar '+k);minus.onclick=()=>change(k,-1);plus.onclick=()=>change(k,1);controls.append(minus,value,plus);row.append(name,controls);$('stock').append(row)})}
 function change(k,d){inventory[k]=Math.max(0,(+inventory[k]||0)+d);localStorage.setItem('hayday-helper-stock',JSON.stringify(inventory));renderStock()}$('resetStock').onclick=()=>{inventory={...defaults};localStorage.setItem('hayday-helper-stock',JSON.stringify(inventory));renderStock()};renderStock();
 function crops(){let n=Math.max(0,+$('plots').value||0),y=Math.max(0,+$('yield').value||0),t=Math.max(0,+$('grow').value||0);$('harvest').textContent=fmt(n*y)+' unidades';$('growTime').textContent=fmt(t)+' minutos'}['plots','yield','grow'].forEach(id=>$(id).addEventListener('input',crops));crops();
-$('share').onclick=async()=>{let data={title:'HayDay Helper',text:'Experimenta o HayDay Helper — ferramentas gratuitas para a tua quinta!',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(()=>$('share').textContent='Link copiado!')}else{prompt('Copia este link:',location.href)}};
+$('share').onclick=async()=>{let data={title:'Favo de mel',text:'Experimenta o Favo de mel — ferramentas gratuitas para a tua quinta!',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(()=>$('share').textContent='Link copiado!')}else{prompt('Copia este link:',location.href)}};
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script></body></html>
