@@ -22,6 +22,7 @@ nav button:nth-child(2){background:#75c8f5;border-color:#369bd3}
 nav button:nth-child(3){background:#ff8c78;border-color:#e96a56}
 nav button:nth-child(4){background:#c49af4;border-color:#9869d1}
 nav button:nth-child(5){background:#8bd58a;border-color:#56ae58}
+nav button:nth-child(6){background:#ffd1e8;border-color:#e99abd}
 nav button.active{color:#fff;filter:saturate(1.15) brightness(.78);transform:translateY(-3px) scale(1.03);box-shadow:0 5px 0 #00000030,0 0 0 3px #fff;}
 main{padding-bottom:35px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:18px;margin:10px 0;box-shadow:0 3px 12px #304c1710}
 h2{margin:0 0 12px;font-size:21px;color:var(--dark)}h3{margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -36,7 +37,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 <body>
 <header><div class="wrap"><h1>🌾 Favo de mel</h1><p>A tua quinta, mais organizada!</p><div class="hero">🚜 Ferramentas gratuitas para calcular XP, comparar lucros e acompanhar o celeiro. Criado por jogadores, para jogadores.</div></div></header>
 <div class="wrap"><nav aria-label="Ferramentas">
-<button class="active" data-tab="inicio">🏡 Início</button><button data-tab="xp">⭐ XP</button><button data-tab="lucro">🪙 Lucros</button><button data-tab="celeiro">🏚️ Celeiro</button><button data-tab="plantacoes">🌽 Plantações</button>
+<button class="active" data-tab="inicio">🏡 Início</button><button data-tab="xp">⭐ XP</button><button data-tab="lucro">🪙 Lucros</button><button data-tab="celeiro">🏚️ Celeiro</button><button data-tab="plantacoes">🌽 Plantações</button><button data-tab="noticias">📰 Notícias</button>
 </nav><main>
 <section id="inicio" class="panel">
 <div class="card"><h2>Bem-vindo à quinta!</h2><p>Escolhe uma ferramenta no menu para começares a fazer contas e planear a tua produção.</p><div class="grid">
@@ -47,6 +48,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 <section id="lucro" class="panel" hidden><div class="card"><h2>🪙 Custos e lucros</h2><label>Custo por unidade</label><input id="cost" type="number" value="8"><label>Preço de venda por unidade</label><input id="price" type="number" value="12"><label>Quantidade</label><input id="quantity" type="number" value="50"><div class="result"><div class="big" id="profit">200 moedas</div><div class="row"><span>Custo total</span><b id="totalCost">400</b></div><div class="row"><span>Venda total</span><b id="totalSale">600</b></div><div class="row"><span>Margem sobre custo</span><b id="margin">50%</b></div></div></div></section>
 <section id="celeiro" class="panel" hidden><div class="card"><h2>🏚️ O meu celeiro</h2><p>Regista manualmente as quantidades. Os dados ficam guardados neste dispositivo.</p><div id="stock"></div><button class="btn secondary" id="resetStock">Repor exemplo</button></div></section>
 <section id="plantacoes" class="panel" hidden><div class="card"><h2>🌽 Planeador de plantações</h2><label>Número de parcelas</label><input id="plots" type="number" min="0" value="20"><label>Unidades por parcela</label><input id="yield" type="number" min="0" value="2"><label>Tempo de crescimento (minutos)</label><input id="grow" type="number" min="0" value="2"><div class="result"><div class="big" id="harvest">40 unidades</div><div class="row"><span>Tempo de crescimento</span><b id="growTime">2 minutos</b></div></div></div></section>
+<section id="noticias" class="panel" hidden>
+<div class="card"><h2>📰 Notícias oficiais</h2><p>Atualizações, anúncios e novidades publicados pela equipa do Hay Day e pela Supercell.</p><a class="btn" href="https://supercell.com/en/games/hayday/blog/" target="_blank" rel="noopener">Ver notícias oficiais ↗</a></div>
+<div class="card"><h2>💡 Dicas para a quinta</h2><p>Guias de jogo, explicações sobre eventos, celeiro, plantações, máquinas e outras funcionalidades.</p><a class="btn secondary" href="https://support.supercell.com/hay-day/en/" target="_blank" rel="noopener">Consultar dicas e ajuda oficial ↗</a></div>
+<div class="card"><h2>🌍 Notícias gerais da comunidade</h2><p>Conversas, partilhas e novidades entre jogadores. Esta é uma comunidade independente, não oficial.</p><a class="btn secondary" href="https://www.reddit.com/r/HayDay/" target="_blank" rel="noopener">Abrir comunidade Hay Day ↗</a> <a class="btn secondary" href="https://hayday.info/" target="_blank" rel="noopener">Ver comunidade e atualizações ↗</a></div>
+<p style="font-size:12px;color:var(--muted);padding:0 5px">As ligações abrem fontes externas. As notícias são consultadas diretamente nessas páginas; esta aplicação não representa a Supercell.</p>
+</section>
 </main><footer>Favo de mel · Projeto independente e não oficial. Não afiliado à Supercell.</footer></div>
 <script>
 const $=id=>document.getElementById(id),fmt=n=>Number(n||0).toLocaleString('pt-PT',{maximumFractionDigits:2});
