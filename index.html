@@ -24,6 +24,13 @@ nav button:nth-child(4){background:#c49af4;border-color:#9869d1}
 nav button:nth-child(5){background:#8bd58a;border-color:#56ae58}
 nav button:nth-child(6){background:#ffd1e8;border-color:#e99abd}
 nav button.active{color:#fff;filter:saturate(1.15) brightness(.78);transform:translateY(-3px) scale(1.03);box-shadow:0 5px 0 #00000030,0 0 0 3px #fff;}
+.news-filters{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 12px}
+.news-filter{border:2px solid #eadfca;border-radius:999px;background:#fff;padding:10px 14px;font-weight:800;white-space:nowrap;color:#46533d}
+.news-filter.active{background:#6e9f45;color:white;border-color:#5b8a37}
+.news-card h3{font-size:18px;color:#355d2b;margin:9px 0}
+.news-card p{line-height:1.55}
+.news-card a{display:inline-block;color:#356d9b;font-weight:750;margin-top:4px}
+.news-card[hidden]{display:none}
 main{padding-bottom:35px}.card{background:white;border:1px solid var(--line);border-radius:20px;padding:18px;margin:10px 0;box-shadow:0 3px 12px #304c1710}
 h2{margin:0 0 12px;font-size:21px;color:var(--dark)}h3{margin:0 0 8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .tile{padding:15px;border-radius:16px;background:#f5f8ed}.tile b{display:block;font-size:18px}.tile span{font-size:13px;color:var(--muted)}
@@ -49,10 +56,74 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 <section id="celeiro" class="panel" hidden><div class="card"><h2>🏚️ O meu celeiro</h2><p>Regista manualmente as quantidades. Os dados ficam guardados neste dispositivo.</p><div id="stock"></div><button class="btn secondary" id="resetStock">Repor exemplo</button></div></section>
 <section id="plantacoes" class="panel" hidden><div class="card"><h2>🌽 Planeador de plantações</h2><label>Número de parcelas</label><input id="plots" type="number" min="0" value="20"><label>Unidades por parcela</label><input id="yield" type="number" min="0" value="2"><label>Tempo de crescimento (minutos)</label><input id="grow" type="number" min="0" value="2"><div class="result"><div class="big" id="harvest">40 unidades</div><div class="row"><span>Tempo de crescimento</span><b id="growTime">2 minutos</b></div></div></div></section>
 <section id="noticias" class="panel" hidden>
-<div class="card"><h2>📰 Notícias oficiais</h2><p>Atualizações, anúncios e novidades publicados pela equipa do Hay Day e pela Supercell.</p><a class="btn" href="https://supercell.com/en/games/hayday/blog/" target="_blank" rel="noopener">Ver notícias oficiais ↗</a></div>
-<div class="card"><h2>💡 Dicas para a quinta</h2><p>Guias de jogo, explicações sobre eventos, celeiro, plantações, máquinas e outras funcionalidades.</p><a class="btn secondary" href="https://support.supercell.com/hay-day/en/" target="_blank" rel="noopener">Consultar dicas e ajuda oficial ↗</a></div>
-<div class="card"><h2>🌍 Notícias gerais da comunidade</h2><p>Conversas, partilhas e novidades entre jogadores. Esta é uma comunidade independente, não oficial.</p><a class="btn secondary" href="https://www.reddit.com/r/HayDay/" target="_blank" rel="noopener">Abrir comunidade Hay Day ↗</a> <a class="btn secondary" href="https://hayday.info/" target="_blank" rel="noopener">Ver comunidade e atualizações ↗</a></div>
-<p style="font-size:12px;color:var(--muted);padding:0 5px">As ligações abrem fontes externas. As notícias são consultadas diretamente nessas páginas; esta aplicação não representa a Supercell.</p>
+<div class="card" style="background:linear-gradient(135deg,#fff4d6,#fff);border-color:#f1d99e">
+<h2>📰 Central de notícias da quinta</h2>
+<p>Novidades do Hay Day, ideias para melhorar a tua quinta e conversas da comunidade — reunidas aqui num só lugar.</p>
+<div style="font-size:12px;color:var(--muted)">Conteúdos selecionados · Fontes identificadas · 9 nov. 2026</div>
+</div>
+<div class="news-filters" role="group" aria-label="Filtrar notícias">
+<button class="news-filter active" data-news-filter="all">🌻 Tudo</button>
+<button class="news-filter" data-news-filter="official">📣 Oficiais</button>
+<button class="news-filter" data-news-filter="tips">💡 Dicas</button>
+<button class="news-filter" data-news-filter="community">🌍 Comunidade</button>
+</div>
+<div id="news-list">
+<article class="card news-card" data-news-type="official">
+<div style="font-size:12px;color:#71806b;font-weight:800">📣 NOVIDADE OFICIAL · 28 OUT. 2026</div>
+<h3>O Red Revenant foi derrotado!</h3>
+<p>A comunidade foi convidada a reclamar as decorações Baby Bat e Lord Baby através da caixa de entrada e do catálogo do jogo. Confirma no jogo se ainda tens recompensas por recolher.</p>
+<a href="https://hayday.info/" target="_blank" rel="noopener">Ver atualização e fonte ↗</a>
+</article>
+<article class="card news-card" data-news-type="official">
+<div style="font-size:12px;color:#71806b;font-weight:800">📣 NOVIDADE OFICIAL · 28 OUT. 2026</div>
+<h3>Temporizadores 50% mais rápidos</h3>
+<p>Foi divulgada uma novidade de tempos de produção acelerados e decorações especiais. Aproveita estes períodos para organizar as máquinas e preparar produtos demorados.</p>
+<a href="https://supercell.com/en/games/hayday/blog/" target="_blank" rel="noopener">Arquivo oficial do Hay Day ↗</a>
+</article>
+<article class="card news-card" data-news-type="official">
+<div style="font-size:12px;color:#71806b;font-weight:800">📣 BASTIDORES · 27 OUT. 2026</div>
+<h3>Um olhar sobre o trabalho da equipa</h3>
+<p>Pequenas partilhas dos bastidores e da preparação de conteúdos do jogo. Segue os canais oficiais para veres as publicações originais.</p>
+<a href="https://supercell.com/en/games/hayday/" target="_blank" rel="noopener">Página oficial do Hay Day ↗</a>
+</article>
+<article class="card news-card" data-news-type="tips">
+<div style="font-size:12px;color:#71806b;font-weight:800">💡 DICA DE JOGO · ORGANIZAÇÃO</div>
+<h3>Consulta o calendário de eventos dentro do jogo</h3>
+<p>Abre a caixa de notícias/envelope na quinta e procura a publicação semanal. É a forma mais segura de confirmar os eventos e as tarefas dos próximos dias.</p>
+<a href="https://support.supercell.com/hay-day/en/" target="_blank" rel="noopener">Ajuda oficial do Hay Day ↗</a>
+</article>
+<article class="card news-card" data-news-type="tips">
+<div style="font-size:12px;color:#71806b;font-weight:800">💡 DICA DE JOGO · CELEIRO</div>
+<h3>Reserva espaço antes de começar um evento</h3>
+<p>Vende ou usa produtos acumulados que não precisas, guarda materiais de expansão importantes e evita encher o celeiro com artigos fáceis de produzir.</p>
+<a href="https://support.supercell.com/hay-day/en/game/index.html" target="_blank" rel="noopener">Guias oficiais e gestão do celeiro ↗</a>
+</article>
+<article class="card news-card" data-news-type="tips">
+<div style="font-size:12px;color:#71806b;font-weight:800">💡 DICA DE JOGO · PRODUÇÃO</div>
+<h3>Deixa as máquinas a trabalhar quando sais</h3>
+<p>Antes de fechares o jogo, inicia produtos com tempos longos. Quando voltares, recolhe tudo e começa logo a produção seguinte para aproveitar melhor o tempo.</p>
+<a href="https://support.supercell.com/hay-day/en/game/index.html" target="_blank" rel="noopener">Mais conselhos na ajuda oficial ↗</a>
+</article>
+<article class="card news-card" data-news-type="community">
+<div style="font-size:12px;color:#71806b;font-weight:800">🌍 COMUNIDADE · 27 OUT. 2026</div>
+<h3>Um evento querido pelos jogadores está de volta</h3>
+<p>Jogadores celebraram o regresso de um evento que permite preparar compotas e bolos. A conversa mostra entusiasmo e ideias para voltar a produzir em quantidade.</p>
+<a href="https://www.reddit.com/r/HayDay/comments/1xgzdaf/its_back/" target="_blank" rel="noopener">Ler a conversa dos jogadores ↗</a>
+</article>
+<article class="card news-card" data-news-type="community">
+<div style="font-size:12px;color:#71806b;font-weight:800">🌍 COMUNIDADE · DISCUSSÕES</div>
+<h3>Partilha dúvidas, trocas e estratégias</h3>
+<p>Encontra outros agricultores, pede opiniões sobre eventos e partilha as tuas melhores estratégias. As opiniões dos jogadores não são anúncios oficiais.</p>
+<a href="https://www.reddit.com/r/HayDay/" target="_blank" rel="noopener">Comunidade r/HayDay ↗</a>
+</article>
+</div>
+<div class="card" style="background:#f4f8ee">
+<h3>🔎 Queres confirmar uma informação?</h3>
+<p>As notícias oficiais podem mudar e os eventos podem variar por conta ou região. Confirma sempre os detalhes na caixa de entrada do jogo e nos canais da Supercell.</p>
+<a class="btn secondary" href="https://supercell.com/en/games/hayday/blog/" target="_blank" rel="noopener">Site oficial ↗</a>
+<a class="btn secondary" href="https://hayday.info/" target="_blank" rel="noopener">Comunidade HayDay.info ↗</a>
+</div>
+<p style="font-size:12px;color:var(--muted);padding:0 5px">O Favo de mel é um projeto independente, não afiliado à Supercell. As notícias e discussões têm ligação à fonte original; dicas editoriais são sugestões gerais de jogadores.</p>
 </section>
 </main><footer>Favo de mel · Projeto independente e não oficial. Não afiliado à Supercell.</footer></div>
 <script>
@@ -67,6 +138,7 @@ function renderStock(){ $('stock').innerHTML='';Object.keys(defaults).forEach(k=
 function change(k,d){inventory[k]=Math.max(0,(+inventory[k]||0)+d);localStorage.setItem('hayday-helper-stock',JSON.stringify(inventory));renderStock()}$('resetStock').onclick=()=>{inventory={...defaults};localStorage.setItem('hayday-helper-stock',JSON.stringify(inventory));renderStock()};renderStock();
 function crops(){let n=Math.max(0,+$('plots').value||0),y=Math.max(0,+$('yield').value||0),t=Math.max(0,+$('grow').value||0);$('harvest').textContent=fmt(n*y)+' unidades';$('growTime').textContent=fmt(t)+' minutos'}['plots','yield','grow'].forEach(id=>$(id).addEventListener('input',crops));crops();
 $('share').onclick=async()=>{let data={title:'Favo de mel',text:'Experimenta o Favo de mel — ferramentas gratuitas para a tua quinta!',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(()=>$('share').textContent='Link copiado!')}else{prompt('Copia este link:',location.href)}};
+document.querySelectorAll('.news-filter').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.news-filter').forEach(x=>x.classList.toggle('active',x===button));document.querySelectorAll('.news-card').forEach(card=>{card.hidden=button.dataset.newsFilter!=='all'&&card.dataset.newsType!==button.dataset.newsFilter})}));
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script></body></html>
 <!-- Publicacao automatica: Favo de mel -->
