@@ -2,7 +2,13 @@
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#6e9f45"><meta name="description" content="HayDay Helper — ferramentas gratuitas para planear a tua quinta.">
+<meta name="theme-color" content="#6e9f45">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<link rel="apple-touch-icon" href="./icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="HayDay Helper"><meta name="description" content="HayDay Helper — ferramentas gratuitas para planear a tua quinta.">
 <title>HayDay Helper</title>
 <style>
 :root{--green:#6e9f45;--dark:#355d2b;--cream:#fff9e9;--ink:#3e4938;--muted:#71806b;--line:#e6e9dc}
@@ -49,4 +55,5 @@ function renderStock(){ $('stock').innerHTML='';Object.keys(defaults).forEach(k=
 function change(k,d){inventory[k]=Math.max(0,(+inventory[k]||0)+d);localStorage.setItem('hayday-helper-stock',JSON.stringify(inventory));renderStock()}$('resetStock').onclick=()=>{inventory={...defaults};localStorage.setItem('hayday-helper-stock',JSON.stringify(inventory));renderStock()};renderStock();
 function crops(){let n=Math.max(0,+$('plots').value||0),y=Math.max(0,+$('yield').value||0),t=Math.max(0,+$('grow').value||0);$('harvest').textContent=fmt(n*y)+' unidades';$('growTime').textContent=fmt(t)+' minutos'}['plots','yield','grow'].forEach(id=>$(id).addEventListener('input',crops));crops();
 $('share').onclick=async()=>{let data={title:'HayDay Helper',text:'Experimenta o HayDay Helper — ferramentas gratuitas para a tua quinta!',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(()=>$('share').textContent='Link copiado!')}else{prompt('Copia este link:',location.href)}};
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script></body></html>
