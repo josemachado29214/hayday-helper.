@@ -2,21 +2,34 @@
 
 Aplicação independente de apoio aos jogadores de Hay Day, pensada para Android e iPhone.
 
-## Funcionalidades já iniciadas
+## Funcionalidades implementadas na primeira fase
 - Ecrã inicial colorido com identidade visual de quinta.
-- Navegação entre áreas.
-- Contador demonstrativo do espaço do celeiro.
-- Calculadora de XP: XP atual, objetivo e XP por ação introduzidos pelo jogador.
-- Calculadora de custos e lucros com quantidade e margem.
+- Calculadora de XP com objetivo, XP em falta e ações estimadas.
+- Calculadora de custos, receitas, lucro e margem.
+- Planeador de produção com ciclos, duração e unidades.
+- Planeador de plantações com parcelas, rendimento e tempo de crescimento.
+- Planeador de animais para estimar rações por ciclo.
+- Registo manual demonstrativo de produtos no celeiro.
 
-## Executar o projeto
-É necessário Node.js e Expo CLI:
-1. Executar `npm install`.
-2. Executar `npx expo start`.
-3. Abrir o projeto com Expo Go ou num emulador.
+## Estrutura
+- `App.js`: interface mobile em React Native.
+- `src/calculations.js`: funções de cálculo reutilizáveis.
+- `src/calculations.test.js`: testes automáticos das funções de cálculo.
 
-## Estado dos dados
-Os cálculos usam valores introduzidos pelo jogador. Os valores de exemplo não são dados oficiais do Hay Day. A aplicação não tem integração direta com o inventário do jogo; qualquer leitura por imagem será implementada apenas com imagens fornecidas voluntariamente pelo jogador.
+## Executar
+1. Instalar Node.js.
+2. Executar `npm install`.
+3. Executar `npx expo start`.
+4. Abrir com Expo Go ou num emulador.
 
-## Nota
+Para executar os testes das funções:
+`npm test`
+
+## Estado e limitações
+- Os campos começam sem dados oficiais pré-carregados; o jogador introduz os valores que confirma no jogo.
+- O inventário atual é uma demonstração local e ainda não fica sincronizado entre sessões ou dispositivos.
+- Não existe integração pública oficial conhecida para ler diretamente o celeiro individual do Hay Day. Uma futura leitura por imagem deverá usar capturas fornecidas voluntariamente pelo jogador.
+- Ainda faltam autenticação, base de dados, persistência, testes em dispositivos e preparação para publicação.
+
+## Independência
 HayDay Helper é um projeto independente de fãs e não é afiliado, aprovado ou patrocinado pela Supercell.
