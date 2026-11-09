@@ -14,7 +14,7 @@
 :root{--green:#6e9f45;--dark:#355d2b;--cream:#fff9e9;--ink:#3e4938;--muted:#71806b;--line:#e6e9dc}
 *{box-sizing:border-box}body{margin:0;background:#eef3e6;color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,sans-serif}
 header{background:linear-gradient(135deg,#78ad4b,#477c39);color:white;padding:12px 18px 16px;border-radius:0 0 26px 26px;text-align:center}
-.wrap{max-width:760px;margin:auto;padding:0 14px}.brand-logo{display:block;width:min(100%,680px);height:auto;max-height:190px;object-fit:contain;margin:0 auto}
+.wrap{max-width:760px;margin:auto;padding:0 14px}.brand-banner{display:block;width:100%;max-width:760px;height:auto;aspect-ratio:2/1;object-fit:cover;margin:0 auto;border-radius:18px}
 nav{display:flex;gap:10px;overflow-x:auto;padding:14px 10px;position:sticky;top:0;background:#fff8e8;z-index:2;border-radius:18px;scrollbar-width:thin;box-shadow:0 5px 16px #6b5b3526;border:2px solid #f2dcae}
 nav button{border:2px solid transparent;color:#3e3428;padding:13px 17px;border-radius:18px;font-size:15px;font-weight:850;white-space:nowrap;box-shadow:0 3px 0 #00000018;transition:transform .15s,filter .15s;cursor:pointer}
 nav button:nth-child(1){background:#ffca55;border-color:#e9a927}
@@ -42,7 +42,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:20px}
 @media(min-width:600px){header{padding-top:30px}.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style></head>
 <body>
-<header><div class="wrap"><img class="brand-logo" src="./logo-favo-de-mel.svg" alt="Favo de mel"></div></header>
+<header><div class="wrap"><img class="brand-banner" src="./banner-favo-de-mel.jpg" alt="Favo de mel"></div></header>
 <div class="wrap"><nav aria-label="Ferramentas">
 <button class="active" data-tab="inicio">🏡 Início</button><button data-tab="xp">⭐ XP</button><button data-tab="lucro">🪙 Lucros</button><button data-tab="celeiro">🏚️ Celeiro</button><button data-tab="plantacoes">🌽 Plantações</button><button data-tab="noticias">📰 Notícias</button>
 </nav><main>
