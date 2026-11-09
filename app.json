@@ -9,12 +9,24 @@
       "backgroundColor": "#b9e98c"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "buildNumber": "1",
+      "bundleIdentifier": "com.josemachado.haydayhelper"
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#b9e98c"
-      }
+      },
+      "versionCode": 1,
+      "package": "com.josemachado.haydayhelper"
+    },
+    "runtimeVersion": {
+      "policy": "fingerprint"
+    },
+    "updates": {
+      "enabled": true,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
     }
   }
 }
