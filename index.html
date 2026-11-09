@@ -57,3 +57,4 @@ function crops(){let n=Math.max(0,+$('plots').value||0),y=Math.max(0,+$('yield')
 $('share').onclick=async()=>{let data={title:'Favo de mel',text:'Experimenta o Favo de mel — ferramentas gratuitas para a tua quinta!',url:location.href};if(navigator.share){try{await navigator.share(data)}catch(e){}}else if(navigator.clipboard){navigator.clipboard.writeText(location.href).then(()=>$('share').textContent='Link copiado!')}else{prompt('Copia este link:',location.href)}};
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
 </script></body></html>
+<!-- Publicacao automatica: Favo de mel -->
