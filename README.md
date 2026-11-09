@@ -1,4 +1,4 @@
-# HayDay Helper 🌻
+# Favo de mel 🌻
 
 Aplicação independente de apoio aos jogadores de Hay Day, pensada para Android e iPhone.
 
@@ -32,7 +32,7 @@ Para executar os testes das funções:
 - Ainda faltam autenticação, base de dados, persistência, testes em dispositivos e preparação para publicação.
 
 ## Independência
-HayDay Helper é um projeto independente de fãs e não é afiliado, aprovado ou patrocinado pela Supercell.
+Favo de mel é um projeto independente de fãs e não é afiliado, aprovado ou patrocinado pela Supercell.
 
 
 ## Preparação para publicação e atualizações
